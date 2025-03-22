@@ -72,7 +72,8 @@ class WebCrawler:
                 if current_url in self.visited_urls:
                     continue
 
-                print(f"Crawling: {current_url}")
+                decoded_url = urllib.parse.unquote(current_url)
+                print(f"Crawling: {decoded_url}")
 
                 try:
                     response = requests.get(current_url, timeout=10)
@@ -86,7 +87,7 @@ class WebCrawler:
                             continue
 
                         self.save_text_to_file(f'{base_dir}/page_{page_num}.txt', content)
-                        crawled_urls.write(f"page_{page_num}: {urllib.parse.unquote(current_url)}\n")
+                        crawled_urls.write(f"page_{page_num}: {decoded_url}\n")
 
                         if len(self.urls_to_visit) < self.max_pages * 2:
                             for link in self.extract_links(soup, current_url):
