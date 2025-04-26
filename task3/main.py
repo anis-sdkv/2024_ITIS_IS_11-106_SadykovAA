@@ -1,4 +1,4 @@
-from InverseIndex import InverseIndex
+from task3.InverseIndex import InverseIndex
 
 root_dir = "../task2/out"
 out_path = "out/inverse_index.txt"
